@@ -25,7 +25,7 @@ public class CreateCustomerService {
         );
     }
 
-    private boolean checkIfEmailIsValid(){ return false; }
+    protected boolean checkIfEmailIsValid(String email){ return email.contains("@"); }
 
     private boolean checkIfPhoneIsValid(){ return false; }
 

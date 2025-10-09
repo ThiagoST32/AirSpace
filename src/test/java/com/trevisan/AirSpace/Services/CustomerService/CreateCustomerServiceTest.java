@@ -5,45 +5,81 @@ import com.trevisan.AirSpace.Models.Customer.Customer;
 import com.trevisan.AirSpace.Models.Enums.UserType;
 import com.trevisan.AirSpace.Repositories.CustomerRepository.CustomerRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import org.springframework.test.web.servlet.MockMvc;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import org.springframework.util.Assert;
 
 import java.sql.Date;
 import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.mock.http.server.reactive.MockServerHttpRequest.post;
 
+
+@ExtendWith(MockitoExtension.class)
 class CreateCustomerServiceTest {
 
-    @MockitoBean
+    @Mock
     private CustomerRepository customerRepository;
 
-    @Autowired
-    private Mock mock;
-
-    @Autowired
-    private MockMvc mockMvc;
-
+    @InjectMocks
     private CreateCustomerService createCustomerService;
 
     @Test
-    void createUser() {
+    void itShouldReturnCreatedUser() throws Exception {
         CreateCustomerRequestDTO requestDTO = new CreateCustomerRequestDTO(
                 "thiago",
                 "thiago@gmail.com",
                 "123",
                 "111111111",
                 Date.from(Instant.now()));
-        Customer newCustomer = new Customer(requestDTO, UserType.CUSTOMER);
+        Customer expectedCustomer = new Customer(requestDTO, UserType.CUSTOMER);
 
-        when(this.createCustomerService.createUser(any(CreateCustomerRequestDTO.class))).thenReturn(newCustomer);
+        when(this.customerRepository.save(any(Customer.class))).thenReturn(expectedCustomer);
 
-        //mockMvc.perform(post("/createUser");
-        //Assert.isInstanceOf(Customer.class, newCustomerPersisted);
+        assertEquals(UserType.CUSTOMER, expectedCustomer.getUserType());
+
+        Customer result = new Customer(createCustomerService.createUser(requestDTO));
+
+        assertNotNull(result);
+        assertEquals("thiago", result.getName());
+        Assert.isInstanceOf(Customer.class, result);
+
+        verify(customerRepository).save(ArgumentMatchers.argThat(customer ->
+            customer.getName().equals("thiago")
+        ));
     }
+
+    @Test
+    void itShouldReturnInvalidEmail(){
+        CreateCustomerRequestDTO requestDTO = new CreateCustomerRequestDTO(
+                "thiago",
+                "thiagogmail.com",
+                "123",
+                "111111111",
+                Date.from(Instant.now()));
+        Customer expectedCustomer = new Customer(requestDTO, UserType.CUSTOMER);
+
+        assertEquals(UserType.CUSTOMER, expectedCustomer.getUserType());
+
+        when(this.customerRepository.save(any(Customer.class))).thenReturn(expectedCustomer);
+
+        Customer result = new Customer(createCustomerService.createUser(requestDTO));
+
+        assertFalse(createCustomerService.checkIfEmailIsValid(result.getEmail()));
+    }
+
+    /*
+    mockMvc.perform(post("/createUser")
+                .content(mapper.writeValueAsString(requestDTO))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value(requestDTO.name()));
+     */
 }

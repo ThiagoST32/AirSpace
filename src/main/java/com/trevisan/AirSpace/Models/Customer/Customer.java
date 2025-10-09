@@ -1,6 +1,9 @@
 package com.trevisan.AirSpace.Models.Customer;
 
 import com.trevisan.AirSpace.Dtos.Customer.CreateCustomerRequestDTO;
+import com.trevisan.AirSpace.Dtos.Customer.CreatedCustomerResponseDTO;
+import com.trevisan.AirSpace.Dtos.Customer.UpdateCustomerRequestDTO;
+import com.trevisan.AirSpace.Dtos.Customer.UpdatedCustomerResponseDTO;
 import com.trevisan.AirSpace.Models.Enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,5 +38,25 @@ public class Customer {
         this.phone = newCustomer.phone();
         this.dateOfBirth = newCustomer.dateOfBirth();
         this.userType = userType;
+    }
+
+    public Customer (CreatedCustomerResponseDTO newCustomer){
+        this.name = newCustomer.name();
+        this.email = newCustomer.email();
+        this.phone = newCustomer.phone();
+        this.dateOfBirth = newCustomer.dateOfBirth();
+    }
+
+    public Customer (UpdateCustomerRequestDTO updateCustomer){
+        this.customerId = updateCustomer.customerId();
+        this.name = updateCustomer.name();
+        this.email = updateCustomer.email();
+        this.phone = updateCustomer.phone();
+    }
+
+    public Customer (UpdatedCustomerResponseDTO updatedCustomer){
+        this.name = updatedCustomer.name();
+        this.email = updatedCustomer.email();
+        this.phone = updatedCustomer.phone();
     }
 }

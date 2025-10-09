@@ -1,7 +1,5 @@
 package com.trevisan.AirSpace.Dtos.Customer;
 
-import com.trevisan.AirSpace.Models.Enums.UserType;
-
 import java.util.Date;
 
 public record CreateCustomerRequestDTO(
