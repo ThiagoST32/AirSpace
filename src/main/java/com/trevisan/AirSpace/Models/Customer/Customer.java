@@ -1,5 +1,6 @@
 package com.trevisan.AirSpace.Models.Customer;
 
+import com.trevisan.AirSpace.Dtos.Customer.CreateCustomerRequestDTO;
 import com.trevisan.AirSpace.Models.Enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,4 +27,13 @@ public class Customer {
     private Date dateOfBirth;
 
     private UserType userType;
+
+    public Customer (CreateCustomerRequestDTO newCustomer, UserType userType){
+        this.name = newCustomer.name();
+        this.email = newCustomer.email();
+        this.password = newCustomer.password();
+        this.phone = newCustomer.phone();
+        this.dateOfBirth = newCustomer.dateOfBirth();
+        this.userType = userType;
+    }
 }

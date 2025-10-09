@@ -3,6 +3,7 @@ package com.trevisan.AirSpace.Models.Reserve;
 import com.trevisan.AirSpace.Models.Customer.Customer;
 import com.trevisan.AirSpace.Models.Enums.ReserveStatus;
 import com.trevisan.AirSpace.Models.Flights.Flights;
+import com.trevisan.AirSpace.Models.Seat.Seat;
 
 import java.math.BigDecimal;
 import java.util.Date;

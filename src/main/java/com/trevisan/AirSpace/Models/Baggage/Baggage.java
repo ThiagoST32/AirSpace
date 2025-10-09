@@ -2,6 +2,7 @@ package com.trevisan.AirSpace.Models.Baggage;
 
 import com.trevisan.AirSpace.Models.Enums.BaggageStatus;
 import com.trevisan.AirSpace.Models.Enums.BaggageType;
+import com.trevisan.AirSpace.Models.Reserve.Reserve;
 
 public class Baggage {
     private Long baggageId;
