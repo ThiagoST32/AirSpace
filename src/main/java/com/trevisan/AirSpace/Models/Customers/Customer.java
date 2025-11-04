@@ -56,7 +56,6 @@ public class Customer {
     }
 
     public Customer (UpdateCustomerRequestDTO updateCustomer){
-        this.customerId = updateCustomer.customerId();
         this.name = updateCustomer.name();
         this.email = updateCustomer.email();
         this.phone = updateCustomer.phone();

@@ -10,25 +10,28 @@ import org.springframework.stereotype.Service;
 @Service
 public class UpdateCustomerService {
 
+    private final CustomerRepository customerRepository;
+
     @Autowired
-    private CustomerRepository customerRepository;
+    public UpdateCustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
-    public UpdatedCustomerResponseDTO customerUpdate(UpdateCustomerRequestDTO customerRequestDTO){
+    public UpdatedCustomerResponseDTO customerUpdate(UpdateCustomerRequestDTO customerRequestDTO, Long id){
 
-        //Criar uma classe responsável / método para verificação de valores vindos do request
-        if (customerRequestDTO.customerId() == null || customerRequestDTO.customerId() == 0){
-            throw new IllegalArgumentException();
+        if (this.customerRepository.findById(id).isEmpty()){
+            throw new NullPointerException();
         }
 
-//        if (this.customerRepository.findById(customerRequestDTO.customerId()).isEmpty()){
-//            throw new NullPointerException();
-//        }
+        Customer updateCustomer = this.customerRepository.findById(id).orElseThrow();
 
-        Customer updateCustomer = this.customerRepository.findById(customerRequestDTO.customerId()).get();
+        updateCustomer.setName(customerRequestDTO.name());
+        updateCustomer.setPhone(customerRequestDTO.phone());
+        updateCustomer.setEmail(customerRequestDTO.email());
 
         //Todas as outras etapas de verificação Email, Phone, etc...
 
-        var updatedCustomer = this.customerRepository.saveAndFlush(updateCustomer);
+        var updatedCustomer = this.customerRepository.save(updateCustomer);
 
         return new UpdatedCustomerResponseDTO(
                 updatedCustomer.getName(),
