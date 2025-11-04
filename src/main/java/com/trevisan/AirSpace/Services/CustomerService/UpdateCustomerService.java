@@ -2,7 +2,7 @@ package com.trevisan.AirSpace.Services.CustomerService;
 
 import com.trevisan.AirSpace.Dtos.Customer.UpdateCustomerRequestDTO;
 import com.trevisan.AirSpace.Dtos.Customer.UpdatedCustomerResponseDTO;
-import com.trevisan.AirSpace.Models.Customer.Customer;
+import com.trevisan.AirSpace.Models.Customers.Customer;
 import com.trevisan.AirSpace.Repositories.CustomerRepository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

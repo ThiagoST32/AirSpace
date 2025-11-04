@@ -1,22 +1,30 @@
-package com.trevisan.AirSpace.Models.Customer;
+package com.trevisan.AirSpace.Models.Customers;
 
 import com.trevisan.AirSpace.Dtos.Customer.CreateCustomerRequestDTO;
 import com.trevisan.AirSpace.Dtos.Customer.CreatedCustomerResponseDTO;
 import com.trevisan.AirSpace.Dtos.Customer.UpdateCustomerRequestDTO;
 import com.trevisan.AirSpace.Dtos.Customer.UpdatedCustomerResponseDTO;
 import com.trevisan.AirSpace.Models.Enums.UserType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "customerId")
+@Entity
 public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long customerId;
 
     private String name;
@@ -27,7 +35,7 @@ public class Customer {
 
     private String phone;
 
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     private UserType userType;
 
@@ -36,7 +44,7 @@ public class Customer {
         this.email = newCustomer.email();
         this.password = newCustomer.password();
         this.phone = newCustomer.phone();
-        this.dateOfBirth = newCustomer.dateOfBirth();
+        this.dateOfBirth = LocalDate.parse(newCustomer.dateOfBirth());
         this.userType = userType;
     }
 

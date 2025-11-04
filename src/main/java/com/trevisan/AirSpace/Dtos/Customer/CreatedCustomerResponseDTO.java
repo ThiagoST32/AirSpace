@@ -1,10 +1,10 @@
 package com.trevisan.AirSpace.Dtos.Customer;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public record CreatedCustomerResponseDTO(
         String name,
         String email,
         String phone,
-        Date dateOfBirth) {
+        LocalDate dateOfBirth) {
 }

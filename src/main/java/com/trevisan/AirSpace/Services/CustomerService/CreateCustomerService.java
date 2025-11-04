@@ -2,15 +2,21 @@ package com.trevisan.AirSpace.Services.CustomerService;
 
 import com.trevisan.AirSpace.Dtos.Customer.CreateCustomerRequestDTO;
 import com.trevisan.AirSpace.Dtos.Customer.CreatedCustomerResponseDTO;
-import com.trevisan.AirSpace.Models.Customer.Customer;
+import com.trevisan.AirSpace.Models.Customers.Customer;
 import com.trevisan.AirSpace.Models.Enums.UserType;
 import com.trevisan.AirSpace.Repositories.CustomerRepository.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CreateCustomerService {
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
     private final UserType userType = UserType.CUSTOMER;
+
+    @Autowired
+    public CreateCustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     public CreatedCustomerResponseDTO createUser(CreateCustomerRequestDTO customer){
         //Adicionar validações posteriormente
