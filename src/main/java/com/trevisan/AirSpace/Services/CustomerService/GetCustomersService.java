@@ -26,6 +26,6 @@ public class GetCustomersService {
     }
 
     public Customer getCustomerByName(String name){
-        return customerRepository.findCustomerByName(name);
+        return customerRepository.findCustomerByName(name).orElseThrow();
     }
 }
