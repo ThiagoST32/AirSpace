@@ -22,14 +22,15 @@ public class ReserveService {
     private final CustomerRepository customerRepository;
 
     @Autowired
-    public ReserveService(ReserveRepository repository, ReserveRepository reserveRepository, CustomerRepository customerRepository) {
+    public ReserveService(ReserveRepository reserveRepository, CustomerRepository customerRepository) {
         this.reserveRepository = reserveRepository;
         this.customerRepository = customerRepository;
     }
 
     public ReserveResponseDTO registerANewReserve(ReserveRequestDTO requestDTO){
 
-        Customer customer = customerRepository.findCustomerByName(requestDTO.customerName()).orElseThrow();
+        //Implementar lógica de verificação posteriormente, no momento apenas está a servir como esqueleto do projeto
+        Customer customer = customerRepository.findById(requestDTO.customerId()).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
         CustomerGetResponseDTO customerResponse = new CustomerGetResponseDTO(
                 customer.getName(),
@@ -46,6 +47,7 @@ public class ReserveService {
                 customer
         );
 
+        //Implementar lógica de verificação posteriormente, no momento apenas está a servir como esqueleto do projeto
         reserveRepository.save(reserveRequest);
 
         return new ReserveResponseDTO(
@@ -64,6 +66,7 @@ public class ReserveService {
                 .toList();
     }
 
+    //Posteriormente implantar método de verificação para apenas ADMIN usarem este tipo de chamada
     public List<ReserveResponseDTO> getAllReserves(){
         return reserveRepository.findAll()
                 .stream()

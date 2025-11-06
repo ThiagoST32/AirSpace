@@ -2,5 +2,5 @@ package com.trevisan.AirSpace.Dtos.Reserve;
 
 import java.math.BigDecimal;
 
-public record ReserveRequestDTO(BigDecimal totalValue, String customerName) {
+public record ReserveRequestDTO(BigDecimal totalValue, Long customerId) {
 }
