@@ -1,9 +1,6 @@
 package com.trevisan.AirSpace.Controller;
 
-import com.trevisan.AirSpace.Dtos.Flights.RequestRegisterFlightDTO;
-import com.trevisan.AirSpace.Dtos.Flights.ResponseAllFlightsDTO;
-import com.trevisan.AirSpace.Dtos.Flights.ResponseAvailableFlightsDTO;
-import com.trevisan.AirSpace.Dtos.Flights.ResponseRegisterFlightDTO;
+import com.trevisan.AirSpace.Dtos.Flights.*;
 import com.trevisan.AirSpace.Services.FlightsService.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +33,11 @@ public class FlightController {
     @GetMapping("/isAvailable")
     public ResponseEntity<List<ResponseAvailableFlightsDTO>>getAllFlightsAvailable(){
         return new ResponseEntity<>(flightService.getAllAvailableFlights(), HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/flightsWithSeats")
+    public ResponseEntity<List<ResponseAllFlightsWithSeatsDTO>> getAllFlightsWithSeats(){
+        return new ResponseEntity<>(flightService.getAllFlightsWithSeats(), HttpStatus.ACCEPTED);
     }
 
 }

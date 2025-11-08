@@ -1,10 +1,6 @@
 package com.trevisan.AirSpace.Services.FlightsService;
 
-import com.trevisan.AirSpace.Dtos.Flights.RequestRegisterFlightDTO;
-import com.trevisan.AirSpace.Dtos.Flights.ResponseAllFlightsDTO;
-import com.trevisan.AirSpace.Dtos.Flights.ResponseAvailableFlightsDTO;
-import com.trevisan.AirSpace.Dtos.Flights.ResponseRegisterFlightDTO;
-import com.trevisan.AirSpace.Dtos.Seat.SeatResponseDTO;
+import com.trevisan.AirSpace.Dtos.Flights.*;
 import com.trevisan.AirSpace.Dtos.Seat.SeatResponseFlightDTO;
 import com.trevisan.AirSpace.Models.Flights.Flights;
 import com.trevisan.AirSpace.Models.Seat.Seat;
@@ -47,6 +43,13 @@ public class FlightService {
                 .toList();
     }
 
+    public List<ResponseAllFlightsWithSeatsDTO> getAllFlightsWithSeats(){
+        return flightRepository.findAllFlightsWithSeats()
+                .stream()
+                .map(this::mapAllFlightsWithSeats)
+                .toList();
+    }
+
     private ResponseRegisterFlightDTO mapToRegisterResponseFromObject(Flights flights){
         return new ResponseRegisterFlightDTO(
                 flights.getFlightId(),
@@ -74,6 +77,19 @@ public class FlightService {
 
     private ResponseAllFlightsDTO mapToFlightsFromObject(Flights flights){
         return new ResponseAllFlightsDTO(
+                flights.getFlightId(),
+                flights.getDepartureTime(),
+                flights.getArrivalTime(),
+                flights.getFlightNumber(),
+                flights.getFlightsClass(),
+                flights.getFlightsStatus(),
+                flights.isFlightsAvailable(),
+                mapToSeatResponseFromObject(flights.getSeat())
+        );
+    }
+
+    private ResponseAllFlightsWithSeatsDTO mapAllFlightsWithSeats(Flights flights){
+        return new ResponseAllFlightsWithSeatsDTO(
                 flights.getFlightId(),
                 flights.getDepartureTime(),
                 flights.getArrivalTime(),

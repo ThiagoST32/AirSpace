@@ -1,6 +1,5 @@
 package com.trevisan.AirSpace.Dtos.Flights;
 
-import com.trevisan.AirSpace.Dtos.Seat.SeatResponseDTO;
 import com.trevisan.AirSpace.Dtos.Seat.SeatResponseFlightDTO;
 import com.trevisan.AirSpace.Models.Enums.FlightClass;
 import com.trevisan.AirSpace.Models.Enums.FlightStatus;
