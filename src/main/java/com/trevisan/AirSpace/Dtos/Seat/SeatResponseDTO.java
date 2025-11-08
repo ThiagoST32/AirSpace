@@ -1,8 +1,9 @@
 package com.trevisan.AirSpace.Dtos.Seat;
 
+import com.trevisan.AirSpace.Dtos.Flights.ResponseRegisterFlightDTO;
 import com.trevisan.AirSpace.Models.Enums.SeatType;
 
 import java.math.BigDecimal;
 
-public record SeatResponseDTO(Long id, String seatNumber, SeatType seatType, boolean seatAvailable, BigDecimal seatValue) {
+public record SeatResponseDTO(Long id, String seatNumber, SeatType seatType, boolean seatAvailable, BigDecimal seatValue, ResponseRegisterFlightDTO flight) {
 }

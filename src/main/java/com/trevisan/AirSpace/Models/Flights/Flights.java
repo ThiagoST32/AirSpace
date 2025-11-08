@@ -11,6 +11,9 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,9 +36,8 @@ public class Flights {
 
     private boolean flightsAvailable;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seat_id")
-    private Seat seats;
+    @OneToMany(mappedBy = "flight", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Seat> seat = new ArrayList<>();
 
 //    private AirPort originAirPort;
 
@@ -43,15 +45,6 @@ public class Flights {
 
 //    private Plane planeId;
 
-    public Flights(RequestRegisterFlightDTO flightDTO, Seat seat){
-        this.departureTime = flightDTO.departureTime();
-        this.arrivalTime = flightDTO.arrivalTime();
-        this.flightNumber = flightDTO.flightNumber();
-        this.flightsClass = flightDTO.flightsClass();
-        this.flightsStatus = flightDTO.flightStatus();
-        this.flightsAvailable = flightDTO.flightAvailable();
-        this.seats = seat;
-    }
     public Flights(RequestRegisterFlightDTO flightDTO){
         this.departureTime = flightDTO.departureTime();
         this.arrivalTime = flightDTO.arrivalTime();
@@ -61,4 +54,13 @@ public class Flights {
         this.flightsAvailable = flightDTO.flightAvailable();
     }
 
+    public Flights(Long flightId, OffsetDateTime departureTime, OffsetDateTime arrivalTime, int flightNumber, FlightClass flightsClass, FlightStatus flightsStatus, boolean flightsAvailable) {
+        this.flightId = flightId;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+        this.flightNumber = flightNumber;
+        this.flightsClass = flightsClass;
+        this.flightsStatus = flightsStatus;
+        this.flightsAvailable = flightsAvailable;
+    }
 }

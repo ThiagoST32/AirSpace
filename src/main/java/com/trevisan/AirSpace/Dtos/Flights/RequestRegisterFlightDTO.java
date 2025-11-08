@@ -10,6 +10,5 @@ public record RequestRegisterFlightDTO(OffsetDateTime departureTime,
                                        int flightNumber,
                                        FlightClass flightsClass,
                                        FlightStatus flightStatus,
-                                       boolean flightAvailable,
-                                       Long seat_id) {
+                                       boolean flightAvailable) {
 }

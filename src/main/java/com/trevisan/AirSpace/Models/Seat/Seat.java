@@ -2,10 +2,8 @@ package com.trevisan.AirSpace.Models.Seat;
 
 import com.trevisan.AirSpace.Dtos.Seat.SeatRegisterRequestDTO;
 import com.trevisan.AirSpace.Models.Enums.SeatType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.trevisan.AirSpace.Models.Flights.Flights;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -31,14 +29,17 @@ public class Seat {
 
     private BigDecimal seatValue;
 
-//    private Flights flightId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "flight_id")
+    private Flights flight;
 
 
-    public Seat(SeatRegisterRequestDTO requestDTO){
+    public Seat(SeatRegisterRequestDTO requestDTO, Flights flight){
         this.seatNumber = requestDTO.seatNumber();
         this.seatType = requestDTO.seatType();
         this.seatAvailable = requestDTO.seatAvailable();
         this.seatValue = requestDTO.seatValue();
+        this.flight = flight;
     }
 
     public Seat(Seat seat){

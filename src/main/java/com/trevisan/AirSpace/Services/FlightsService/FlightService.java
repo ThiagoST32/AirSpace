@@ -4,31 +4,29 @@ import com.trevisan.AirSpace.Dtos.Flights.RequestRegisterFlightDTO;
 import com.trevisan.AirSpace.Dtos.Flights.ResponseAllFlightsDTO;
 import com.trevisan.AirSpace.Dtos.Flights.ResponseAvailableFlightsDTO;
 import com.trevisan.AirSpace.Dtos.Flights.ResponseRegisterFlightDTO;
+import com.trevisan.AirSpace.Dtos.Seat.SeatResponseDTO;
+import com.trevisan.AirSpace.Dtos.Seat.SeatResponseFlightDTO;
 import com.trevisan.AirSpace.Models.Flights.Flights;
 import com.trevisan.AirSpace.Models.Seat.Seat;
 import com.trevisan.AirSpace.Repositories.FlightRepository.FlightRepository;
-import com.trevisan.AirSpace.Repositories.SeatRepository.SeatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FlightService {
 
     private final FlightRepository flightRepository;
-    private final SeatRepository seatRepository;
-
     @Autowired
-    public FlightService(FlightRepository flightRepository, SeatRepository seatRepository) {
+    public FlightService(FlightRepository flightRepository) {
         this.flightRepository = flightRepository;
-        this.seatRepository = seatRepository;
     }
 
     public ResponseRegisterFlightDTO registerNewFlight(RequestRegisterFlightDTO flightDTO){
 
-        Seat seatsToActualFlight = seatRepository.findById(flightDTO.seat_id()).orElseThrow();
-        Flights newFlightRequested = new Flights(flightDTO, seatsToActualFlight);
+        Flights newFlightRequested = new Flights(flightDTO);
 
         var newFlightPersisted = flightRepository.save(newFlightRequested);
 
@@ -57,8 +55,7 @@ public class FlightService {
                 flights.getFlightNumber(),
                 flights.getFlightsClass(),
                 flights.getFlightsStatus(),
-                flights.isFlightsAvailable(),
-                flights.getSeats()
+                flights.isFlightsAvailable()
         );
     }
 
@@ -71,7 +68,7 @@ public class FlightService {
                 flights.getFlightsClass(),
                 flights.getFlightsStatus(),
                 flights.isFlightsAvailable(),
-                flights.getSeats()
+                mapToSeatResponseFromObject(flights.getSeat())
         );
     }
 
@@ -84,7 +81,18 @@ public class FlightService {
                 flights.getFlightsClass(),
                 flights.getFlightsStatus(),
                 flights.isFlightsAvailable(),
-                flights.getSeats()
+                mapToSeatResponseFromObject(flights.getSeat())
         );
+    }
+
+    private List<SeatResponseFlightDTO> mapToSeatResponseFromObject(List<Seat> seats){
+        return seats.stream()
+                .map(seat -> new SeatResponseFlightDTO(
+                        seat.getSeatId(),
+                        seat.getSeatNumber(),
+                        seat.getSeatType(),
+                        seat.isSeatAvailable(),
+                        seat.getSeatValue()
+                )).collect(Collectors.toList());
     }
 }

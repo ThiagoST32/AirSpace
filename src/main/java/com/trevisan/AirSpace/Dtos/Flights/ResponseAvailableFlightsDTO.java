@@ -1,10 +1,12 @@
 package com.trevisan.AirSpace.Dtos.Flights;
 
+import com.trevisan.AirSpace.Dtos.Seat.SeatResponseDTO;
+import com.trevisan.AirSpace.Dtos.Seat.SeatResponseFlightDTO;
 import com.trevisan.AirSpace.Models.Enums.FlightClass;
 import com.trevisan.AirSpace.Models.Enums.FlightStatus;
-import com.trevisan.AirSpace.Models.Seat.Seat;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 public record ResponseAvailableFlightsDTO(Long id,
                                           OffsetDateTime departureTime,
@@ -13,4 +15,4 @@ public record ResponseAvailableFlightsDTO(Long id,
                                           FlightClass flightsClass,
                                           FlightStatus flightStatus,
                                           boolean flightAvailable,
-                                          Seat seat) {}
+                                          List<SeatResponseFlightDTO> seat) {}
