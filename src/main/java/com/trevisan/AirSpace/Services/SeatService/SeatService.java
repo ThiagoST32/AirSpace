@@ -47,10 +47,11 @@ public class SeatService {
 
     public List<SeatResponseDTO> getAllSeatsFromAOneFlights(Long id){
         //Buscar voos pelo ‘Id’ a partir do nome do voo
-        return flightRepository.findById(id)
-                .stream()
-                .map(this::mapToSeatResponseFromObjectDTO)
-                .toList();
+//        return flightRepository.findById(id)
+//                .stream()
+//                .map(this::mapToSeatResponseFromObjectDTO)
+//                .toList();
+        return null;
     }
 
     private SeatResponseDTO mapToSeatResponseFromRequestDTO(SeatRegisterRequestDTO requestDTO){
