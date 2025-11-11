@@ -2,6 +2,7 @@ package com.trevisan.AirSpace.Controller;
 
 import com.trevisan.AirSpace.Dtos.Flights.*;
 import com.trevisan.AirSpace.Services.FlightsService.FlightService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,21 @@ public class FlightController {
     @GetMapping("/flightsWithSeats")
     public ResponseEntity<List<ResponseAllFlightsWithSeatsDTO>> getAllFlightsWithSeats(){
         return new ResponseEntity<>(flightService.getAllFlightsWithSeats(), HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/flightsWithSeatsAvailable")
+    public ResponseEntity<List<ResponseFlightsWithAvailableSeatsDTO>>getAllFlightsWithAvailableSeats(){
+        return new ResponseEntity<>(flightService.getAllFlightsAvailableSeats(), HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("flightsWithSeatsById/{id}")
+    public ResponseEntity<List<ResponseFlightsWithSeatsByIdDTO>>getFlightsWithSeatsById(@PathVariable Long id){
+        return new ResponseEntity<>(flightService.getFlightsWithSeatsById(id), HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("flightsById/{id}")
+    public ResponseEntity<List<ResponseFlightByIdDTO>>getFlightById(@PathVariable Long id){
+        return new ResponseEntity<>(flightService.getFlightsById(id), HttpStatus.ACCEPTED);
     }
 
 }

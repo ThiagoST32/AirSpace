@@ -50,6 +50,27 @@ public class FlightService {
                 .toList();
     }
 
+    public List<ResponseFlightsWithAvailableSeatsDTO> getAllFlightsAvailableSeats(){
+        return flightRepository.findAllFlightsWithAvailableSeats()
+                .stream()
+                .map(this::mapAllFlightsWithAvailableSeats)
+                .toList();
+    }
+
+    public List<ResponseFlightsWithSeatsByIdDTO> getFlightsWithSeatsById(Long id){
+        return flightRepository.findFlightWithSeatsById(id)
+                .stream()
+                .map(this::mapFlightsWithSeatsById)
+                .toList();
+    }
+
+    public List<ResponseFlightByIdDTO> getFlightsById(Long id){
+        return flightRepository.findById(id)
+                .stream()
+                .map(this::mapFlightsById)
+                .toList();
+    }
+
     private ResponseRegisterFlightDTO mapToRegisterResponseFromObject(Flights flights){
         return new ResponseRegisterFlightDTO(
                 flights.getFlightId(),
@@ -90,6 +111,45 @@ public class FlightService {
 
     private ResponseAllFlightsWithSeatsDTO mapAllFlightsWithSeats(Flights flights){
         return new ResponseAllFlightsWithSeatsDTO(
+                flights.getFlightId(),
+                flights.getDepartureTime(),
+                flights.getArrivalTime(),
+                flights.getFlightNumber(),
+                flights.getFlightsClass(),
+                flights.getFlightsStatus(),
+                flights.isFlightsAvailable(),
+                mapToSeatResponseFromObject(flights.getSeat())
+        );
+    }
+
+    private ResponseFlightsWithAvailableSeatsDTO mapAllFlightsWithAvailableSeats(Flights flights){
+        return new ResponseFlightsWithAvailableSeatsDTO(
+                flights.getFlightId(),
+                flights.getDepartureTime(),
+                flights.getArrivalTime(),
+                flights.getFlightNumber(),
+                flights.getFlightsClass(),
+                flights.getFlightsStatus(),
+                flights.isFlightsAvailable(),
+                mapToSeatResponseFromObject(flights.getSeat())
+        );
+    }
+
+    private ResponseFlightsWithSeatsByIdDTO mapFlightsWithSeatsById(Flights flights){
+        return new ResponseFlightsWithSeatsByIdDTO(
+                flights.getFlightId(),
+                flights.getDepartureTime(),
+                flights.getArrivalTime(),
+                flights.getFlightNumber(),
+                flights.getFlightsClass(),
+                flights.getFlightsStatus(),
+                flights.isFlightsAvailable(),
+                mapToSeatResponseFromObject(flights.getSeat())
+        );
+    }
+
+    private ResponseFlightByIdDTO mapFlightsById(Flights flights){
+        return new ResponseFlightByIdDTO(
                 flights.getFlightId(),
                 flights.getDepartureTime(),
                 flights.getArrivalTime(),

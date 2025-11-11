@@ -9,10 +9,10 @@ import java.util.Optional;
 
 public interface FlightRepository extends JpaRepository<Flights, Long> {
 
-    @Query(value = "SELECT DISTINCT f FROM Flights f LEFT JOIN FETCH f.seats", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT f.* FROM Flights f LEFT JOIN Seat as s ON f.flight_id = s.flight_id FETCH f.seats", nativeQuery = true)
     List<Flights> findAllFlightsWithSeats();
 
-    @Query(value = "SELECT DISTINCT f FROM Flights f LEFT JOIN FETCH f.seats WHERE f.flightsAvailable = true", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT f.* FROM Flights f LEFT JOIN Seat as s ON f.flight_id = s.flight_id WHERE s.seat_available = true", nativeQuery = true)
     List<Flights> findAllFlightsWithAvailableSeats();
 
     @Query(value = "SELECT f FROM Flights f LEFT JOIN f.seats WHERE f.flights_id = :flightId", nativeQuery = true)
