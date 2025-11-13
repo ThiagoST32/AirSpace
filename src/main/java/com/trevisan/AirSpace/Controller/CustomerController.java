@@ -5,9 +5,7 @@ import com.trevisan.AirSpace.Dtos.Customer.CreatedCustomerResponseDTO;
 import com.trevisan.AirSpace.Dtos.Customer.UpdateCustomerRequestDTO;
 import com.trevisan.AirSpace.Dtos.Customer.UpdatedCustomerResponseDTO;
 import com.trevisan.AirSpace.Models.Customers.Customer;
-import com.trevisan.AirSpace.Services.CustomerService.CreateCustomerService;
-import com.trevisan.AirSpace.Services.CustomerService.GetCustomersService;
-import com.trevisan.AirSpace.Services.CustomerService.UpdateCustomerService;
+import com.trevisan.AirSpace.Services.CustomerService.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,39 +17,35 @@ import java.util.List;
 @RequestMapping("api/v1/customer")
 public class CustomerController {
 
-    private final GetCustomersService getCustomersService;
-    private final CreateCustomerService createCustomerService;
-    private final UpdateCustomerService updateCustomerService;
+    private final CustomerService customerService;
 
     @Autowired
-    public CustomerController(GetCustomersService getCustomersService, CreateCustomerService createCustomerService, UpdateCustomerService updateCustomerService) {
-        this.getCustomersService = getCustomersService;
-        this.createCustomerService = createCustomerService;
-        this.updateCustomerService = updateCustomerService;
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
     @PostMapping("register")
     public ResponseEntity<CreatedCustomerResponseDTO>registerNewCustomer(@RequestBody CreateCustomerRequestDTO requestDTO){
-        return new ResponseEntity<>(createCustomerService.createUser(requestDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(customerService.createUser(requestDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("updateCustomer/{id}")
     public ResponseEntity<UpdatedCustomerResponseDTO>updateCustomer(@RequestBody UpdateCustomerRequestDTO requestDTO, @PathVariable Long id){
-        return new ResponseEntity<>(updateCustomerService.customerUpdate(requestDTO, id), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(customerService.customerUpdate(requestDTO, id), HttpStatus.ACCEPTED);
     }
 
     @GetMapping
     public ResponseEntity<List<Customer>>getAllCustomers(){
-        return new ResponseEntity<>(getCustomersService.getAllCustomers(), HttpStatus.OK);
+        return new ResponseEntity<>(customerService.getAllCustomers(), HttpStatus.OK);
     }
 
     @GetMapping("id/{id}")
     public ResponseEntity<Customer>getCustomerById(@PathVariable Long id){
-        return new ResponseEntity<>(getCustomersService.getCustomerById(id), HttpStatus.OK);
+        return new ResponseEntity<>(customerService.getCustomerById(id), HttpStatus.OK);
     }
 
     @GetMapping("name/{name}")
     public ResponseEntity<Customer>getCustomerByName(@PathVariable String name){
-        return new ResponseEntity<>(getCustomersService.getCustomerByName(name), HttpStatus.OK);
+        return new ResponseEntity<>(customerService.getCustomerByName(name), HttpStatus.OK);
     }
 }

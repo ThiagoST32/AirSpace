@@ -23,13 +23,13 @@ import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
-class CreateCustomerServiceTest {
+class CustomerServiceTest {
 
     @Mock
     private CustomerRepository customerRepository;
 
     @InjectMocks
-    private CreateCustomerService createCustomerService;
+    private CustomerService customerService;
 
     @Test
     void itShouldReturnCreatedUser() throws Exception {
@@ -45,7 +45,7 @@ class CreateCustomerServiceTest {
 
         assertEquals(UserType.CUSTOMER, expectedCustomer.getUserType());
 
-        Customer result = new Customer(createCustomerService.createUser(requestDTO));
+        Customer result = new Customer(customerService.createUser(requestDTO));
 
         assertNotNull(result);
         assertEquals("thiago", result.getName());
@@ -70,9 +70,9 @@ class CreateCustomerServiceTest {
 
         when(this.customerRepository.save(any(Customer.class))).thenReturn(expectedCustomer);
 
-        Customer result = new Customer(createCustomerService.createUser(requestDTO));
+        Customer result = new Customer(customerService.createUser(requestDTO));
 
-        assertFalse(createCustomerService.checkIfEmailIsValid(result.getEmail()));
+        assertFalse(customerService.checkIfEmailIsValid(result.getEmail()));
     }
 
     /*

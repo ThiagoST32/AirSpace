@@ -1,6 +1,7 @@
 package com.trevisan.AirSpace.Models.Flights;
 
 import com.trevisan.AirSpace.Dtos.Flights.RequestRegisterFlightDTO;
+import com.trevisan.AirSpace.Models.AirPort.AirPort;
 import com.trevisan.AirSpace.Models.Enums.FlightClass;
 import com.trevisan.AirSpace.Models.Enums.FlightStatus;
 import com.trevisan.AirSpace.Models.Seat.Seat;
@@ -39,9 +40,11 @@ public class Flights {
     @OneToMany(mappedBy = "flight", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Seat> seat = new ArrayList<>();
 
-//    private AirPort originAirPort;
+    @OneToOne(mappedBy = "flightsToGo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private AirPort originAirPort;
 
-//    private AirPort destinationAirPort;
+    @OneToMany(mappedBy = "flightsToCome", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<AirPort> destinationAirPort;
 
 //    private Plane planeId;
 

@@ -27,7 +27,7 @@ class UpdateCustomerServiceTest {
     private UpdateCustomerService updateCustomerService;
 
     @InjectMocks
-    private CreateCustomerService createCustomerService;
+    private CustomerService customerService;
 
     @Test
     void itShouldUpdatedCustomer() {
