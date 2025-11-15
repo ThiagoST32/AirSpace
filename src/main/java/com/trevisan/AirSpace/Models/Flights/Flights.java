@@ -5,6 +5,7 @@ import com.trevisan.AirSpace.Models.AirPort.AirPort;
 import com.trevisan.AirSpace.Models.Enums.FlightClass;
 import com.trevisan.AirSpace.Models.Enums.FlightStatus;
 import com.trevisan.AirSpace.Models.Seat.Seat;
+import com.trevisan.AirSpace.Models.Travels.Travels;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,12 +40,6 @@ public class Flights {
 
     @OneToMany(mappedBy = "flight", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Seat> seat = new ArrayList<>();
-
-    @OneToOne(mappedBy = "flightsToGo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private AirPort originAirPort;
-
-    @OneToMany(mappedBy = "flightsToCome", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<AirPort> destinationAirPort;
 
 //    private Plane planeId;
 

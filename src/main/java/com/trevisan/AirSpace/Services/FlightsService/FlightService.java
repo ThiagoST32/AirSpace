@@ -2,8 +2,10 @@ package com.trevisan.AirSpace.Services.FlightsService;
 
 import com.trevisan.AirSpace.Dtos.Flights.*;
 import com.trevisan.AirSpace.Dtos.Seat.SeatResponseFlightDTO;
+import com.trevisan.AirSpace.Dtos.Travels.TravelResponseFlightDTO;
 import com.trevisan.AirSpace.Models.Flights.Flights;
 import com.trevisan.AirSpace.Models.Seat.Seat;
+import com.trevisan.AirSpace.Models.Travels.Travels;
 import com.trevisan.AirSpace.Repositories.FlightRepository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -106,6 +108,7 @@ public class FlightService {
                 flights.getFlightsStatus(),
                 flights.isFlightsAvailable(),
                 mapToSeatResponseFromObject(flights.getSeat())
+//                mapToTravelsResponseFromObject(flights.getTravels())
         );
     }
 
@@ -169,6 +172,15 @@ public class FlightService {
                         seat.getSeatType(),
                         seat.isSeatAvailable(),
                         seat.getSeatValue()
+                )).collect(Collectors.toList());
+    }
+
+    private List<TravelResponseFlightDTO> mapToTravelsResponseFromObject(List<Travels> travels){
+        return travels.stream()
+                .map( travel -> new TravelResponseFlightDTO(
+                        travel.getTravelId(),
+                        travel.getAirPortTravel(),
+                        travel.getTravelStatus()
                 )).collect(Collectors.toList());
     }
 }

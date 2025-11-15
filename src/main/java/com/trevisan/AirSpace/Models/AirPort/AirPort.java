@@ -2,6 +2,7 @@ package com.trevisan.AirSpace.Models.AirPort;
 
 import com.trevisan.AirSpace.Dtos.AirPort.RequestAirPortRegisterDTO;
 import com.trevisan.AirSpace.Models.Flights.Flights;
+import com.trevisan.AirSpace.Models.Travels.Travels;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,14 +29,6 @@ public class AirPort {
     private String city;
 
     private String country;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "flightId")
-    private Flights flightsToGo;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "flightId")
-    private Flights flightsToCome;
 
     public AirPort(RequestAirPortRegisterDTO registerDTO){
         this.name = registerDTO.name();

@@ -8,11 +8,11 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 public record ResponseAllFlightsDTO(
-                        Long id,
-                        OffsetDateTime departureTime,
-                        OffsetDateTime arrivalTime,
-                        int flightNumber,
-                        FlightClass flightsClass,
-                        FlightStatus flightStatus,
-                        boolean flightAvailable,
-                        List<SeatResponseFlightDTO> seat) {}
+        Long id,
+        OffsetDateTime departureTime,
+        OffsetDateTime arrivalTime,
+        int flightNumber,
+        FlightClass flightsClass,
+        FlightStatus flightStatus,
+        boolean flightAvailable,
+        List<SeatResponseFlightDTO> seat) {}
