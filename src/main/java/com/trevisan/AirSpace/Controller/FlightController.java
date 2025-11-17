@@ -1,8 +1,8 @@
 package com.trevisan.AirSpace.Controller;
 
 import com.trevisan.AirSpace.Dtos.Flights.*;
+import com.trevisan.AirSpace.Dtos.Flights.Request.RequestRegisterFlightDTO;
 import com.trevisan.AirSpace.Services.FlightsService.FlightService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,16 +1,11 @@
 package com.trevisan.AirSpace.Models.AirPort;
 
-import com.trevisan.AirSpace.Dtos.AirPort.RequestAirPortRegisterDTO;
-import com.trevisan.AirSpace.Models.Flights.Flights;
-import com.trevisan.AirSpace.Models.Travels.Travels;
+import com.trevisan.AirSpace.Dtos.AirPort.Requests.RequestAirPortRegisterDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @AllArgsConstructor

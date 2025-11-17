@@ -1,4 +1,4 @@
-package com.trevisan.AirSpace.Dtos.Flights;
+package com.trevisan.AirSpace.Dtos.Flights.Request;
 
 import com.trevisan.AirSpace.Models.Enums.FlightClass;
 import com.trevisan.AirSpace.Models.Enums.FlightStatus;

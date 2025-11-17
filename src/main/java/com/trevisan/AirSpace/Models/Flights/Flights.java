@@ -1,11 +1,9 @@
 package com.trevisan.AirSpace.Models.Flights;
 
-import com.trevisan.AirSpace.Dtos.Flights.RequestRegisterFlightDTO;
-import com.trevisan.AirSpace.Models.AirPort.AirPort;
+import com.trevisan.AirSpace.Dtos.Flights.Request.RequestRegisterFlightDTO;
 import com.trevisan.AirSpace.Models.Enums.FlightClass;
 import com.trevisan.AirSpace.Models.Enums.FlightStatus;
 import com.trevisan.AirSpace.Models.Seat.Seat;
-import com.trevisan.AirSpace.Models.Travels.Travels;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

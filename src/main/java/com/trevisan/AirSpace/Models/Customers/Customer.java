@@ -1,9 +1,8 @@
 package com.trevisan.AirSpace.Models.Customers;
 
-import com.trevisan.AirSpace.Dtos.Customer.CreateCustomerRequestDTO;
-import com.trevisan.AirSpace.Dtos.Customer.CreatedCustomerResponseDTO;
-import com.trevisan.AirSpace.Dtos.Customer.UpdateCustomerRequestDTO;
-import com.trevisan.AirSpace.Dtos.Customer.UpdatedCustomerResponseDTO;
+import com.trevisan.AirSpace.Dtos.Customer.Requests.CreateCustomerRequestDTO;
+import com.trevisan.AirSpace.Dtos.Customer.Responses.CustomerSummaryDTO;
+import com.trevisan.AirSpace.Dtos.Customer.Requests.UpdateCustomerRequestDTO;
 import com.trevisan.AirSpace.Models.Enums.UserType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +14,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -48,7 +46,7 @@ public class Customer {
         this.userType = userType;
     }
 
-    public Customer (CreatedCustomerResponseDTO newCustomer){
+    public Customer (CustomerSummaryDTO newCustomer){
         this.name = newCustomer.name();
         this.email = newCustomer.email();
         this.phone = newCustomer.phone();
@@ -59,11 +57,5 @@ public class Customer {
         this.name = updateCustomer.name();
         this.email = updateCustomer.email();
         this.phone = updateCustomer.phone();
-    }
-
-    public Customer (UpdatedCustomerResponseDTO updatedCustomer){
-        this.name = updatedCustomer.name();
-        this.email = updatedCustomer.email();
-        this.phone = updatedCustomer.phone();
     }
 }

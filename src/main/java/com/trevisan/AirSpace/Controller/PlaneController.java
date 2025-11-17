@@ -4,7 +4,6 @@ import com.trevisan.AirSpace.Dtos.Plane.Requests.CreatePlaneRequestDTO;
 import com.trevisan.AirSpace.Dtos.Plane.Responses.PlaneDetailResponseDTO;
 import com.trevisan.AirSpace.Dtos.Plane.Responses.PlaneListResponseDTO;
 import com.trevisan.AirSpace.Dtos.Plane.Responses.PlaneResponseDTO;
-import com.trevisan.AirSpace.Dtos.Plane.Responses.PlaneSummaryDTO;
 import com.trevisan.AirSpace.Services.PlaneService.PlaneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

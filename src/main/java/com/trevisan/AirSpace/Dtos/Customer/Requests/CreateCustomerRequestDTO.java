@@ -1,6 +1,4 @@
-package com.trevisan.AirSpace.Dtos.Customer;
-
-import java.time.LocalDate;
+package com.trevisan.AirSpace.Dtos.Customer.Requests;
 
 public record CreateCustomerRequestDTO(
         String name,

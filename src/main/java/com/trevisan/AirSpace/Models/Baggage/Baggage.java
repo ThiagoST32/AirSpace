@@ -1,6 +1,6 @@
 package com.trevisan.AirSpace.Models.Baggage;
 
-import com.trevisan.AirSpace.Dtos.Baggage.BaggageRequestDTO;
+import com.trevisan.AirSpace.Dtos.Baggage.Requests.BaggageRequestDTO;
 import com.trevisan.AirSpace.Models.Enums.BaggageStatus;
 import com.trevisan.AirSpace.Models.Enums.BaggageType;
 import jakarta.persistence.Entity;

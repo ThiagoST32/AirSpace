@@ -1,8 +1,9 @@
 package com.trevisan.AirSpace.Services.FlightsService;
 
 import com.trevisan.AirSpace.Dtos.Flights.*;
+import com.trevisan.AirSpace.Dtos.Flights.Request.RequestRegisterFlightDTO;
 import com.trevisan.AirSpace.Dtos.Seat.SeatResponseFlightDTO;
-import com.trevisan.AirSpace.Dtos.Travels.TravelResponseFlightDTO;
+import com.trevisan.AirSpace.Dtos.Travels.Responses.TravelResponseFlightDTO;
 import com.trevisan.AirSpace.Models.Flights.Flights;
 import com.trevisan.AirSpace.Models.Seat.Seat;
 import com.trevisan.AirSpace.Models.Travels.Travels;

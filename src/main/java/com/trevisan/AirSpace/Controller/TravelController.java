@@ -1,8 +1,8 @@
 package com.trevisan.AirSpace.Controller;
 
 import com.trevisan.AirSpace.Dtos.Travels.RegisterTravelRequestDTO;
-import com.trevisan.AirSpace.Dtos.Travels.ResponseGetAllTravels;
-import com.trevisan.AirSpace.Dtos.Travels.ResponseRegisterTravelDTO;
+import com.trevisan.AirSpace.Dtos.Travels.Responses.ResponseGetAllTravels;
+import com.trevisan.AirSpace.Dtos.Travels.Responses.ResponseRegisterTravelDTO;
 import com.trevisan.AirSpace.Services.TravelService.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

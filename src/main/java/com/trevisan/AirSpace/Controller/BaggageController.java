@@ -1,7 +1,7 @@
 package com.trevisan.AirSpace.Controller;
 
-import com.trevisan.AirSpace.Dtos.Baggage.BaggageRequestDTO;
-import com.trevisan.AirSpace.Dtos.Baggage.BaggageResponseDTO;
+import com.trevisan.AirSpace.Dtos.Baggage.Requests.BaggageRequestDTO;
+import com.trevisan.AirSpace.Dtos.Baggage.Response.BaggageResponseDTO;
 import com.trevisan.AirSpace.Services.BaggageService.BaggageRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

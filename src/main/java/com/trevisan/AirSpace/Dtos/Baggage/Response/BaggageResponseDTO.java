@@ -1,4 +1,4 @@
-package com.trevisan.AirSpace.Dtos.Baggage;
+package com.trevisan.AirSpace.Dtos.Baggage.Response;
 
 import com.trevisan.AirSpace.Models.Enums.BaggageStatus;
 import com.trevisan.AirSpace.Models.Enums.BaggageType;

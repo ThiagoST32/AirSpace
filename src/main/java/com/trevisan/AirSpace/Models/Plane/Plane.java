@@ -1,6 +1,7 @@
 package com.trevisan.AirSpace.Models.Plane;
 
 import com.trevisan.AirSpace.Dtos.Plane.Requests.CreatePlaneRequestDTO;
+import com.trevisan.AirSpace.Models.Company.Company;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,12 +23,12 @@ public class Plane {
 
     private String capacity;
 
-//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private Company company;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Company company;
 
-    public Plane (CreatePlaneRequestDTO requestDTO){
+    public Plane (CreatePlaneRequestDTO requestDTO, Company company){
         this.modelPlane = requestDTO.modelPlane();
         this.capacity = requestDTO.capacity();
-//        this.company = requestDTO.company();
+        this.company = company;
     }
 }

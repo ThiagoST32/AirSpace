@@ -1,6 +1,6 @@
 package com.trevisan.AirSpace.Services.ReserveService;
 
-import com.trevisan.AirSpace.Dtos.Customer.CustomerGetResponseDTO;
+import com.trevisan.AirSpace.Dtos.Customer.Responses.CustomerDetailsResponseDTO;
 import com.trevisan.AirSpace.Dtos.Reserve.ReserveRequestDTO;
 import com.trevisan.AirSpace.Dtos.Reserve.ReserveResponseDTO;
 import com.trevisan.AirSpace.Models.Customers.Customer;
@@ -32,7 +32,7 @@ public class ReserveService {
         //Implementar lógica de verificação posteriormente, no momento apenas está a servir como esqueleto do projeto
         Customer customer = customerRepository.findById(requestDTO.customerId()).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
-        CustomerGetResponseDTO customerResponse = new CustomerGetResponseDTO(
+        CustomerDetailsResponseDTO customerResponse = new CustomerDetailsResponseDTO(
                 customer.getName(),
                 customer.getEmail(),
                 customer.getPhone(),
@@ -78,7 +78,7 @@ public class ReserveService {
     private ReserveResponseDTO mapToReserveResponseDTO(Reserve reserve){
         Customer customer = this.customerRepository.findById(reserve.getCustomer().getCustomerId()).orElseThrow();
 
-        CustomerGetResponseDTO customerResponse = new CustomerGetResponseDTO(
+        CustomerDetailsResponseDTO customerResponse = new CustomerDetailsResponseDTO(
                 customer.getName(),
                 customer.getEmail(),
                 customer.getPhone(),

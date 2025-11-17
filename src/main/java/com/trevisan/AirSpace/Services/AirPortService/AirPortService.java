@@ -1,9 +1,9 @@
 package com.trevisan.AirSpace.Services.AirPortService;
 
-import com.trevisan.AirSpace.Dtos.AirPort.RequestAirPortRegisterDTO;
-import com.trevisan.AirSpace.Dtos.AirPort.ResponseAirPortRegisterDTO;
-import com.trevisan.AirSpace.Dtos.AirPort.ResponseGetAirPortByIdDTO;
-import com.trevisan.AirSpace.Dtos.AirPort.ResponseGetAllAirPortDTO;
+import com.trevisan.AirSpace.Dtos.AirPort.Requests.RequestAirPortRegisterDTO;
+import com.trevisan.AirSpace.Dtos.AirPort.Response.ResponseAirPortRegisterDTO;
+import com.trevisan.AirSpace.Dtos.AirPort.Response.ResponseGetAirPortByIdDTO;
+import com.trevisan.AirSpace.Dtos.AirPort.Response.ResponseGetAllAirPortDTO;
 import com.trevisan.AirSpace.Models.AirPort.AirPort;
 import com.trevisan.AirSpace.Repositories.AirPortRepository.AirPortRepository;
 import org.springframework.beans.factory.annotation.Autowired;

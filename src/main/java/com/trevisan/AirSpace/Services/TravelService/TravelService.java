@@ -1,17 +1,16 @@
 package com.trevisan.AirSpace.Services.TravelService;
 
-import com.trevisan.AirSpace.Dtos.AirPort.ResponseAirPortDTO;
+import com.trevisan.AirSpace.Dtos.AirPort.Response.ResponseAirPortDTO;
 import com.trevisan.AirSpace.Dtos.Flights.ResponseFlightDTO;
 import com.trevisan.AirSpace.Dtos.Travels.RegisterTravelRequestDTO;
-import com.trevisan.AirSpace.Dtos.Travels.ResponseGetAllTravels;
-import com.trevisan.AirSpace.Dtos.Travels.ResponseRegisterTravelDTO;
+import com.trevisan.AirSpace.Dtos.Travels.Responses.ResponseGetAllTravels;
+import com.trevisan.AirSpace.Dtos.Travels.Responses.ResponseRegisterTravelDTO;
 import com.trevisan.AirSpace.Models.AirPort.AirPort;
 import com.trevisan.AirSpace.Models.Flights.Flights;
 import com.trevisan.AirSpace.Models.Travels.Travels;
 import com.trevisan.AirSpace.Repositories.AirPortRepository.AirPortRepository;
 import com.trevisan.AirSpace.Repositories.FlightRepository.FlightRepository;
 import com.trevisan.AirSpace.Repositories.TravelRepository.TravelRepository;
-import org.hibernate.dialect.pagination.FetchLimitHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

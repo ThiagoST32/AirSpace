@@ -1,4 +1,6 @@
 package com.trevisan.AirSpace.Dtos.Plane.Responses;
 
-public record PlaneListResponseDTO(Long planeId,String modelPlane, String capacity) {
+import com.trevisan.AirSpace.Dtos.Company.Responses.CompanySummaryDTO;
+
+public record PlaneListResponseDTO(Long planeId, String modelPlane, String capacity, CompanySummaryDTO companySummaryDTO) {
 }
