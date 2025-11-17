@@ -1,8 +1,6 @@
 package com.trevisan.AirSpace.Dtos.Travels;
 
-import com.trevisan.AirSpace.Models.AirPort.AirPort;
 import com.trevisan.AirSpace.Models.Enums.TravelStatus;
-import com.trevisan.AirSpace.Models.Flights.Flights;
 
-public record ResponseGetAllTravels(Long id, AirPort airPort, Flights flights, TravelStatus travelStatus) {
+public record ResponseGetAllTravels(Long id, com.trevisan.AirSpace.Dtos.AirPort.ResponseAirPortDTO airPort, com.trevisan.AirSpace.Dtos.Flights.ResponseFlightDTO flights, TravelStatus travelStatus) {
 }
