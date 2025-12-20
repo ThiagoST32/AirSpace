@@ -1,0 +1,9 @@
+CREATE TABLE customer(
+    customerId long,
+    name varchar(55) NOT NULL,
+    email varchar (55) NOT NULL UNIQUE,
+    password varchar(255) NOT NULL,
+    phone varchar(25) NOT NULL UNIQUE,
+    dateOfBirth DATE NOT NULL,
+    userType varchar(25) NOT NULL
+);
