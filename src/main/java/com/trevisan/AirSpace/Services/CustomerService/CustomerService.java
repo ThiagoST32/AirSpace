@@ -7,29 +7,25 @@ import com.trevisan.AirSpace.Dtos.Customer.Requests.UpdateCustomerRequestDTO;
 import com.trevisan.AirSpace.Models.Customers.Customer;
 import com.trevisan.AirSpace.Models.Enums.UserType;
 import com.trevisan.AirSpace.Repositories.CustomerRepository.CustomerRepository;
+import com.trevisan.AirSpace.Utils.CustomerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.Year;
-import java.time.YearMonth;
-import java.time.chrono.ChronoLocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.format.ResolverStyle;
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Service
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerValidator customerValidator;
     private final UserType userType = UserType.CUSTOMER;
+    private final CustomerUtils customerUtils;
+
 
     @Autowired
-    public CustomerService(CustomerRepository customerRepository, CustomerValidator customerValidator) {
+    public CustomerService(CustomerRepository customerRepository, CustomerValidator customerValidator, CustomerUtils customerUtils) {
         this.customerRepository = customerRepository;
         this.customerValidator = customerValidator;
+        this.customerUtils = customerUtils;
     }
 
     public CustomerSummaryDTO createUser(CreateCustomerRequestDTO customer){
@@ -78,7 +74,7 @@ public class CustomerService {
     public List<CustomerListResponseDTO> getAllCustomers() {
         return customerRepository.findAll()
                 .stream()
-                .map(this::mapToCustomerListResponseDTO)
+                .map(customerUtils::mapToCustomerListResponseDTO)
                 .toList();
     }
 
@@ -101,16 +97,6 @@ public class CustomerService {
                 customerFoundByName.getEmail(),
                 customerFoundByName.getPhone(),
                 customerFoundByName.getDateOfBirth()
-        );
-    }
-
-    private CustomerListResponseDTO mapToCustomerListResponseDTO(Customer customer){
-        return new CustomerListResponseDTO(
-                customer.getCustomerId(),
-                customer.getName(),
-                customer.getEmail(),
-                customer.getPhone(),
-                customer.getDateOfBirth()
         );
     }
 

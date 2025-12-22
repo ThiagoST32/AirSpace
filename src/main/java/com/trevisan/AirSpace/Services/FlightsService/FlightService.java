@@ -2,6 +2,13 @@ package com.trevisan.AirSpace.Services.FlightsService;
 
 import com.trevisan.AirSpace.Dtos.Flights.*;
 import com.trevisan.AirSpace.Dtos.Flights.Request.RequestRegisterFlightDTO;
+import com.trevisan.AirSpace.Dtos.Flights.ResponseAllFlightsDTO;
+import com.trevisan.AirSpace.Dtos.Flights.ResponseAllFlightsWithSeatsDTO;
+import com.trevisan.AirSpace.Dtos.Flights.ResponseAvailableFlightsDTO;
+import com.trevisan.AirSpace.Dtos.Flights.ResponseFlightByIdDTO;
+import com.trevisan.AirSpace.Dtos.Flights.ResponseFlightsWithAvailableSeatsDTO;
+import com.trevisan.AirSpace.Dtos.Flights.ResponseFlightsWithSeatsByIdDTO;
+import com.trevisan.AirSpace.Dtos.Flights.ResponseRegisterFlightDTO;
 import com.trevisan.AirSpace.Dtos.Seat.SeatResponseFlightDTO;
 import com.trevisan.AirSpace.Dtos.Travels.Responses.TravelResponseFlightDTO;
 import com.trevisan.AirSpace.Models.Flights.Flights;

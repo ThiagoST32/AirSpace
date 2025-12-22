@@ -33,6 +33,7 @@ public class ReserveService {
         Customer customer = customerRepository.findById(requestDTO.customerId()).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
         CustomerDetailsResponseDTO customerResponse = new CustomerDetailsResponseDTO(
+                customer.getCustomerId(),
                 customer.getName(),
                 customer.getEmail(),
                 customer.getPhone(),
@@ -79,6 +80,7 @@ public class ReserveService {
         Customer customer = this.customerRepository.findById(reserve.getCustomer().getCustomerId()).orElseThrow();
 
         CustomerDetailsResponseDTO customerResponse = new CustomerDetailsResponseDTO(
+                customer.getCustomerId(),
                 customer.getName(),
                 customer.getEmail(),
                 customer.getPhone(),
