@@ -14,6 +14,37 @@ services:
     networks:
       - local-network
 
+  emailServer:
+    image: greenmail/standalone:latest
+    container_name: email-server
+    ports:
+      - "3025:3025" # SMTP
+      - "3110:3110" # POP3
+      - "3143:3143" # IMAP
+    environment:
+      - JAVA_OPTS=-Dgreenmail.verbose
+      - GREENMAIL_SETUP_ALL=true
+      - GREENMAIL_VERBOSE=true
+      - GREENMAIL_USERS=testuser:testpass
+    restart: always
+    networks:
+      - local-network
+
+  roundcubemail:
+    image: roundcube/roundcubemail:latest
+    depends_on:
+      - emailServer
+    ports:
+      - "8000:8082"
+    environment:
+      - ROUNDCUBEMAIL_DEFAULT_HOST=greenmail
+      - ROUNDCUBEMAIL_DEFAULT_PORT=3143
+      - ROUNDCUBEMAIL_SMTP_SERVER=greenmail
+      - ROUNDCUBEMAIL_SMTP_PORT=3025
+      - ROUNDCUBEMAIL_SKIN=elastic
+    restart: always
+    networks:
+      - local-network
 
 networks:
   local-network:
