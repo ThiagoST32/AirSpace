@@ -48,7 +48,7 @@ public class CustomerValidator {
     }
 
     private void checkIfPhoneIsValid(String phone) {
-        String phoneRegex = "^55\\$$\\\\d{2}\\$$\\\\d{3,4}-\\\\d{4}$";
+        String phoneRegex = "^\\s*(\\d{2}|\\d{0})[-. ]?(\\d{5}|\\d{4})[-. ]?(\\d{4})[-. ]?\\s*$";
         if (!Pattern.compile(phoneRegex).matcher(phone).matches()){
             throw new RuntimeException("Invalid Phone");
         }
@@ -65,7 +65,7 @@ public class CustomerValidator {
     private void checkIfDateOfBirthIsValid(String dateOfBirth) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy").withResolverStyle(ResolverStyle.STRICT);
         try {
-            LocalDate birthDate = LocalDate.parse(dateOfBirth, formatter);
+            LocalDate birthDate = LocalDate.parse(dateOfBirth);
 
             boolean birthDayIsAfterThisYear = birthDate.isAfter(ChronoLocalDate.from(Year.now()));
             if (birthDayIsAfterThisYear){

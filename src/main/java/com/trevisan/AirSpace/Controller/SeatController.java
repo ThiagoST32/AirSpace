@@ -1,6 +1,6 @@
 package com.trevisan.AirSpace.Controller;
 
-import com.trevisan.AirSpace.Dtos.Seat.SeatRegisterRequestDTO;
+import com.trevisan.AirSpace.Dtos.Seat.Request.SeatRegisterRequestDTO;
 import com.trevisan.AirSpace.Dtos.Seat.SeatResponseDTO;
 import com.trevisan.AirSpace.Services.SeatService.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;

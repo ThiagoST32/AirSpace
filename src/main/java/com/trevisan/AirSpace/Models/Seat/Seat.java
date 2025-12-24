@@ -1,6 +1,6 @@
 package com.trevisan.AirSpace.Models.Seat;
 
-import com.trevisan.AirSpace.Dtos.Seat.SeatRegisterRequestDTO;
+import com.trevisan.AirSpace.Dtos.Seat.Request.SeatRegisterRequestDTO;
 import com.trevisan.AirSpace.Models.Enums.SeatType;
 import com.trevisan.AirSpace.Models.Flights.Flights;
 import jakarta.persistence.*;
