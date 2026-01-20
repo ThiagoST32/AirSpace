@@ -1,6 +1,6 @@
 package com.trevisan.AirSpace.Controller;
 
-import com.trevisan.AirSpace.Dtos.Reserve.ReserveRequestDTO;
+import com.trevisan.AirSpace.Dtos.Reserve.Request.ReserveRequestDTO;
 import com.trevisan.AirSpace.Dtos.Reserve.ReserveResponseDTO;
 import com.trevisan.AirSpace.Services.ReserveService.ReserveService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -30,7 +30,7 @@ public class CustomerService {
 
     public CustomerSummaryDTO createUser(CreateCustomerRequestDTO customer){
 
-        customerValidator.validationCustomerCreation(customer);
+//        customerValidator.validationCustomerCreation(customer);
 
         Customer newCustomer = new Customer(customer, userType);
         var newCustomerPersisted = this.customerRepository.save(newCustomer);

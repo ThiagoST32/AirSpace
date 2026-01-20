@@ -2,7 +2,7 @@ package com.trevisan.AirSpace.Services.TravelService;
 
 import com.trevisan.AirSpace.Dtos.AirPort.Response.ResponseAirPortDTO;
 import com.trevisan.AirSpace.Dtos.Flights.ResponseFlightDTO;
-import com.trevisan.AirSpace.Dtos.Travels.RegisterTravelRequestDTO;
+import com.trevisan.AirSpace.Dtos.Travels.Requests.RegisterTravelRequestDTO;
 import com.trevisan.AirSpace.Dtos.Travels.Responses.ResponseGetAllTravels;
 import com.trevisan.AirSpace.Dtos.Travels.Responses.ResponseRegisterTravelDTO;
 import com.trevisan.AirSpace.Models.AirPort.AirPort;

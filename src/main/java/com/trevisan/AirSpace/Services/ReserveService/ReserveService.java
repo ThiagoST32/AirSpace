@@ -1,7 +1,7 @@
 package com.trevisan.AirSpace.Services.ReserveService;
 
 import com.trevisan.AirSpace.Dtos.Customer.Responses.CustomerDetailsResponseDTO;
-import com.trevisan.AirSpace.Dtos.Reserve.ReserveRequestDTO;
+import com.trevisan.AirSpace.Dtos.Reserve.Request.ReserveRequestDTO;
 import com.trevisan.AirSpace.Dtos.Reserve.ReserveResponseDTO;
 import com.trevisan.AirSpace.Models.Customers.Customer;
 import com.trevisan.AirSpace.Models.Reserves.Reserve;

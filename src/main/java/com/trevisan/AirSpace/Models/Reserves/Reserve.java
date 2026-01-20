@@ -1,6 +1,6 @@
 package com.trevisan.AirSpace.Models.Reserves;
 
-import com.trevisan.AirSpace.Dtos.Reserve.ReserveRequestDTO;
+import com.trevisan.AirSpace.Dtos.Reserve.Request.ReserveRequestDTO;
 import com.trevisan.AirSpace.Models.Customers.Customer;
 import com.trevisan.AirSpace.Models.Enums.ReserveStatus;
 import jakarta.persistence.*;
