@@ -2,10 +2,13 @@ package com.trevisan.AirSpace.Services.CustomerService;
 
 import com.trevisan.AirSpace.Dtos.Customer.Requests.CreateCustomerRequestDTO;
 import com.trevisan.AirSpace.Dtos.Customer.Responses.CustomerListResponseDTO;
+import com.trevisan.AirSpace.Dtos.Customer.Responses.CustomerSummaryBaggageDTO;
 import com.trevisan.AirSpace.Dtos.Customer.Responses.CustomerSummaryDTO;
 import com.trevisan.AirSpace.Dtos.Customer.Requests.UpdateCustomerRequestDTO;
+import com.trevisan.AirSpace.Models.Baggage.Baggage;
 import com.trevisan.AirSpace.Models.Customers.Customer;
 import com.trevisan.AirSpace.Models.Enums.UserType;
+import com.trevisan.AirSpace.Repositories.BaggageRepository.CustomerBaggageRepository;
 import com.trevisan.AirSpace.Repositories.CustomerRepository.CustomerRepository;
 import com.trevisan.AirSpace.Utils.CustomerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +20,16 @@ import java.util.List;
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerValidator customerValidator;
+    private final CustomerBaggageRepository customerBaggageRepository;
     private final UserType userType = UserType.CUSTOMER;
     private final CustomerUtils customerUtils;
 
 
     @Autowired
-    public CustomerService(CustomerRepository customerRepository, CustomerValidator customerValidator, CustomerUtils customerUtils) {
+    public CustomerService(CustomerRepository customerRepository, CustomerValidator customerValidator, CustomerBaggageRepository customerBaggageRepository, CustomerUtils customerUtils) {
         this.customerRepository = customerRepository;
         this.customerValidator = customerValidator;
+        this.customerBaggageRepository = customerBaggageRepository;
         this.customerUtils = customerUtils;
     }
 
@@ -58,7 +63,7 @@ public class CustomerService {
         updateCustomer.setPhone(customerRequestDTO.phone());
         updateCustomer.setEmail(customerRequestDTO.email());
 
-        //Todas as outras etapas de verificação Email, Phone, etc...
+        //Todas as outras etapas de verificação Email, Phone, etc.
 
         var updatedCustomer = this.customerRepository.save(updateCustomer);
 
@@ -100,5 +105,17 @@ public class CustomerService {
         );
     }
 
+    public CustomerSummaryBaggageDTO getBaggageCustomer(String name){
+        Customer customerFoundedByName = customerRepository.findCustomerByName(name).orElseThrow();
+        List<Baggage> baggages = customerBaggageRepository.findAllBaggageByCustomerId(customerFoundedByName.getCustomerId());
+        return new CustomerSummaryBaggageDTO(
+                customerFoundedByName.getCustomerId(),
+                customerFoundedByName.getName(),
+                customerFoundedByName.getEmail(),
+                customerFoundedByName.getPhone(),
+                customerFoundedByName.getDateOfBirth(),
+                baggages
+        );
+    }
 
 }

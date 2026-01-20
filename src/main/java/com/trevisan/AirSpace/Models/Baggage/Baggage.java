@@ -1,19 +1,26 @@
 package com.trevisan.AirSpace.Models.Baggage;
 
 import com.trevisan.AirSpace.Dtos.Baggage.Requests.BaggageRequestDTO;
+import com.trevisan.AirSpace.Dtos.Baggage.Requests.BaggageUpdateRequestDTO;
 import com.trevisan.AirSpace.Models.Enums.BaggageStatus;
 import com.trevisan.AirSpace.Models.Enums.BaggageType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "baggageId")
 public class Baggage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +32,17 @@ public class Baggage {
 
     private BaggageStatus baggageStatus;
 
+    private UUID baggageCode;
+
+    private Float baggageHigh;
+
+    private Float baggageWidth;
+
+    //Futuramente trocar para uma entidade de itens
+    private List<String> itens = new ArrayList<>();
+
+    private int totalItens;
+    
     @CreationTimestamp
     private Timestamp timestampBaggage;
 
@@ -32,5 +50,19 @@ public class Baggage {
         this.weight = requestDTO.weight();
         this.baggageType = requestDTO.baggageType();
         this.baggageStatus = requestDTO.baggageStatus();
+        this.baggageHigh = requestDTO.baggageHigh();
+        this.baggageWidth = requestDTO.baggageWidth();
+        baggageCode = baggageCodeGenerator();
     }
+
+    public Baggage (BaggageUpdateRequestDTO requestDTO){
+        this.baggageType = requestDTO.baggageType();
+        this.baggageHigh = requestDTO.baggageHigh();
+        this.baggageWidth = requestDTO.baggageWidth();
+    }
+
+    private UUID baggageCodeGenerator(){
+        return UUID.randomUUID();
+    }
+
 }

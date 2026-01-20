@@ -10,5 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface ReserveRepository extends JpaRepository<Reserve, Long> {
-    Optional<List<Reserve>> findByCustomer_CustomerId(Long id);
+
 }

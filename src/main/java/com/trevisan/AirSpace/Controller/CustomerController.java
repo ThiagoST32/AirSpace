@@ -2,6 +2,7 @@ package com.trevisan.AirSpace.Controller;
 
 import com.trevisan.AirSpace.Dtos.Customer.Requests.CreateCustomerRequestDTO;
 import com.trevisan.AirSpace.Dtos.Customer.Responses.CustomerListResponseDTO;
+import com.trevisan.AirSpace.Dtos.Customer.Responses.CustomerSummaryBaggageDTO;
 import com.trevisan.AirSpace.Dtos.Customer.Responses.CustomerSummaryDTO;
 import com.trevisan.AirSpace.Dtos.Customer.Requests.UpdateCustomerRequestDTO;
 import com.trevisan.AirSpace.Services.CustomerService.CustomerService;
@@ -46,5 +47,10 @@ public class CustomerController {
     @GetMapping("name/{name}")
     public ResponseEntity<CustomerSummaryDTO>getCustomerByName(@PathVariable String name){
         return new ResponseEntity<>(customerService.getCustomerByName(name), HttpStatus.OK);
+    }
+
+    @GetMapping("baggage/{name}")
+    public ResponseEntity<CustomerSummaryBaggageDTO>getAllBaggageCustomer(@PathVariable String name){
+        return new ResponseEntity<>(customerService.getBaggageCustomer(name), HttpStatus.OK);
     }
 }

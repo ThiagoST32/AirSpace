@@ -7,5 +7,5 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.UUID;
 
-public record ReserveResponseDTO(BigDecimal totalValue, LocalDate localDate, LocalTime localDateTime, UUID reserveCode, CustomerDetailsResponseDTO customer) {
+public record ReserveResponseDTO(BigDecimal totalValue, LocalDate localDate, LocalTime localDateTime, UUID reserveCode) {
 }

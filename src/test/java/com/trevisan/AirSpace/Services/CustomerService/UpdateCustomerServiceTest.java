@@ -20,14 +20,14 @@ import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 class UpdateCustomerServiceTest {
-    @Mock
-    private CustomerRepository customerRepository;
-
-    @InjectMocks
-    private UpdateCustomerService updateCustomerService;
-
-    @InjectMocks
-    private CustomerService customerService;
+//    @Mock
+//    private CustomerRepository customerRepository;
+//
+//    @InjectMocks
+//    private UpdateCustomerService updateCustomerService;
+//
+//    @InjectMocks
+//    private CustomerService customerService;
 
 //    @Test
 //    void itShouldUpdatedCustomer() {
