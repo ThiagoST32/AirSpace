@@ -1,6 +1,6 @@
 package com.trevisan.AirSpace.Controller;
 
-import com.trevisan.AirSpace.Dtos.Travels.RegisterTravelRequestDTO;
+import com.trevisan.AirSpace.Dtos.Travels.Requests.RegisterTravelRequestDTO;
 import com.trevisan.AirSpace.Dtos.Travels.Responses.ResponseGetAllTravels;
 import com.trevisan.AirSpace.Dtos.Travels.Responses.ResponseRegisterTravelDTO;
 import com.trevisan.AirSpace.Services.TravelService.TravelService;

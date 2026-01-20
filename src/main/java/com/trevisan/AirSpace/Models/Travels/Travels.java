@@ -1,6 +1,6 @@
 package com.trevisan.AirSpace.Models.Travels;
 
-import com.trevisan.AirSpace.Dtos.Travels.RegisterTravelRequestDTO;
+import com.trevisan.AirSpace.Dtos.Travels.Requests.RegisterTravelRequestDTO;
 import com.trevisan.AirSpace.Models.AirPort.AirPort;
 import com.trevisan.AirSpace.Models.Enums.TravelStatus;
 import com.trevisan.AirSpace.Models.Flights.Flights;
